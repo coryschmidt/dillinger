@@ -210,11 +210,12 @@ exports.unlink_dropbox = function(req,res){
 
 exports.import_dropbox = function(req,res){
 
-  Dropbox.searchForMdFiles(req.session.dropbox, function(err,data){
+  var extensions = [".txt", ".md"]
+  
+  Dropbox.searchForFiles(req.session.dropbox, extensions, function(err,data){
     if(err) return res.json(err)
     res.json(data)
   })
-
 }
 
 exports.fetch_dropbox_file = function(req,res){

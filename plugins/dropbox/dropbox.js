@@ -95,7 +95,7 @@ exports.Dropbox = (function(){
       var pathToMdFile = req.body.mdFile
 
       // For some reason dropbox needs me to do this...
-      // Otherwise, spaces and shit get fuct up
+      // Otherwise, spaces get messed up
       // TODO: DRY THIS UP
       var name = pathToMdFile.split('/').pop()
       var encodedName = encodeURIComponent(name)
@@ -117,10 +117,11 @@ exports.Dropbox = (function(){
         }
       })
     },
-    searchForMdFiles: function(dropbox_obj,cb){
+    searchForFiles: function(dropbox_obj,extensions,cb){
       
       // *sigh* http://forums.dropbox.com/topic.php?id=50266&replies=1
-      var uri = SEARCH_URI + "/?query=.md&file_limit=500"
+      // See if we can make multiple requests and merge the results
+      var uri = SEARCH_URI + "/?query=.zzz&file_limit=500"
       
       var oauth = { 
                     consumer_key: dropbox_config.app_key
@@ -128,16 +129,30 @@ exports.Dropbox = (function(){
                   , token: dropbox_obj.oauth.access_token
                   , token_secret: dropbox_obj.oauth.access_token_secret
                   }
-      
-      request.get({url: uri, oauth:oauth}, function (e, r, b) {
-
+      var callCounter = 0
+      var results = null
+      var cbFunc = function (e, r, b) {
         if(e) return cb(e,null)
-
-        b = JSON.parse(b)
-        return cb(null,b)
-
-      }) // end request.get()
-        
+	
+	if( results == null )
+	{
+	  results = JSON.parse(b)
+	}
+	else
+	{
+	  results = results.concat(JSON.parse(b))
+	}
+	if( callCounter++ < extensions.length ) {
+	  uri = uri.replace(extensions[callCounter-1],extensions[callCounter])
+	  request.get({url: uri, oauth: oauth}, cbFunc)
+	}
+	if( callCounter == extensions.length )
+	{
+	  return cb(null,results)
+	}
+      }
+      uri = uri.replace(".zzz", extensions[callCounter])
+      request.get({url: uri, oauth:oauth}, cbFunc) // end request.get()
     },
     saveToDropbox: function(req, res){
 

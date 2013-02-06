@@ -28,7 +28,7 @@ $(function(){
     , dillingerStyle = dillingerElem.style
     , domPrefixes = 'Webkit Moz O ms Khtml'.split(' ')
     
-  // Cache some shit
+  // Cache some stuff
   var $theme = $('#theme-list')
     , $preview = $('#preview')
     , $autosave = $('#autosave')
@@ -892,6 +892,18 @@ $(function(){
       return (/(\.md)|(\.markdown)/i).test(file)
     }
     
+    // Test for txt file extension
+    function _isTxtFile(file)
+    {
+      return (/(\.txt)/i).test(file)
+    }
+    
+    // Test for specified file extension
+    function _isCorrectFileType(ext, file)
+    {
+      return (/(\.ext)/i).test(file)
+    }
+    
     // Returns an array of only md files from a tree
     function _extractMdFiles(repoName, treefiles){
       /*
@@ -910,7 +922,8 @@ $(function(){
 
       treefiles.forEach(function(el){
         
-        if( _isMdFile(el.path) ){
+//        if( _isMdFile(el.path) ){
+          if( _isCorrectFileType("txt", el.path) ){
           
           var fullpath
           
@@ -1291,7 +1304,7 @@ $(function(){
       searchDropbox: function(){
 
         function _beforeSendHandler(){
-          Notifier.showMessage('Searching for .md Files')
+          Notifier.showMessage('Searching for .txt and .md Files')
         }
 
         function _doneHandler(a, b, response){
@@ -1423,8 +1436,8 @@ $(function(){
         }
 
         var md = encodeURIComponent( editor.getSession().getValue() )
-        
-        var postData = 'pathToMdFile=' + profile.dropbox.filepath + encodeURIComponent(profile.current_filename) + '.md' + '&fileContents=' + md
+	
+        var postData = 'pathToMdFile=' + profile.dropbox.filepath + encodeURIComponent(profile.current_filename) + '&fileContents=' + md
         
         var config = {
                         type: 'POST',

@@ -53,7 +53,7 @@ License
 
 MIT
 
-*Free Software, Fuck Yeah!*
+*Free Software, Yeah!*
 
   [john gruber]: http://daringfireball.net/
   [@thomasfuchs]: http://twitter.com/thomasfuchs
