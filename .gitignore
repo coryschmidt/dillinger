@@ -4,3 +4,4 @@ logs/*
 public/files/*
 *-config.json
 backup/*
+*~
