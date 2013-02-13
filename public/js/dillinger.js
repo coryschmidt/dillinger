@@ -577,13 +577,14 @@ $(function(){
    */  
   function showAboutInfo(){
 
-    $('.modal-header h3').text("What's the deal with Dillinger?")
+    $('.modal-header h3').text("What is Down the Mark?")
 
     // TODO: PULL THIS OUT AND RENDER VIA TEMPLATE FROM XHR OR STASH IN PAGE FOR SEO AND CLONE
-    var aboutContent =  "<p>Dillinger is an online cloud-enabled, HTML5, buzzword-filled Markdown editor.</p>"
+    var aboutContent =  "<p>Down the Mark is an HTML5 text editor that supports the Markdown formatting syntax. It is based on Dillinger.</p>"
                       + "<p>Dillinger was designed and developed by <a href='http://twitter.com/joemccann'>@joemccann</a> because he needed a decent Markdown editor.</p>"
                       + "<p>Dillinger is a 100% open source project so <a href='https://github.com/joemccann/dillinger'>fork the code</a> and contribute!</p>"
-                      + "<p>Follow Dillinger on Twitter at <a href='http://twitter.com/dillingerapp'>@dillingerapp</a></p>"
+                      + "<p>Follow Down the Mark at <a target='_blank' href='http://twitter.com/downthemark'>@downthemark</a></p>"
+
   
     $('.modal-body').html(aboutContent)
 
