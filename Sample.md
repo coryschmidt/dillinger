@@ -16,7 +16,7 @@ __Bold text__
        	PrependTabOrFourSpaces( code_sample );
 	}  
 
-Call out `<code>` in the middle of a sentence with back ticks!
+Call out `CodeBlocks()` in the middle of a sentence with back ticks!
 
 > And it's a piece of cake to  
 > add block quotes. If you want  
@@ -27,6 +27,6 @@ Call out `<code>` in the middle of a sentence with back ticks!
 
 Make any changes you like and watch them show up on the right-hand side!
 
-Oh, and links are allowed too, either [inline](http://daringfireball.net/projects/markdown/syntax#precode) or [reference]. 
+Oh, and links are allowed too, either [inline](http://daringfireball.net/projects/markdown/syntax#link) or [reference]. 
 
-[reference]: http://daringfireball.net/projects/markdown/syntax#precode
+[reference]: http://daringfireball.net/projects/markdown/syntax#link

@@ -33,7 +33,7 @@ app.configure(function(){
   app.locals.node_version = process.version.replace('v', '')
   app.locals.app_version = package.version
   app.locals.env = process.env.NODE_ENV
-  app.locals.readme = fs.readFileSync( path.resolve(__dirname, './README.md'), 'utf-8')
+  app.locals.readme = fs.readFileSync( path.resolve(__dirname, './Sample.md'), 'utf-8')
   
   // Compress/concat files for deploy env...
   // Need to run this locally BEFORE deploying
